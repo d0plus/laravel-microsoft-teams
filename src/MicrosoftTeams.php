@@ -45,7 +45,7 @@ class MicrosoftTeams
             $data['sections'] = array_values($data['sections']);
         }
         try {
-            $response = $this->httpClient->post($url, [RequestOptions::JSON => $data]);
+            $response = $this->httpClient->post($url, ['json' => $data]);
         } catch (ClientException $exception) {
             throw CouldNotSendNotification::microsoftTeamsRespondedWithAnError($exception);
         } catch (Exception $exception) {
