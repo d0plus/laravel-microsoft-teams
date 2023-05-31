@@ -330,15 +330,35 @@ class AdaptiveCard
     }
 
     /**
+     * Additional options to pass to message payload object.
+     *
+     * @param array $options
+     * @param string|int $sectionId - optional in which section to put the property
+     *
+     * @return MicrosoftTeamsMessage $this
+     */
+    public function options(array $options, $sectionId = null): self
+    {
+
+        return $this;
+    }
+
+    /**
      * Recipient's webhook url.
      *
-     * @param string|null $webhookUrl - url of webhook
+     * @param $webhookUrl - url of webhook
      *
-     * @return $this
+     * @throws CouldNotSendNotification
+     *
+     * @return MicrosoftTeamsMessage $this
      */
     public function to(?string $webhookUrl): self
     {
+        if (! $webhookUrl) {
+            throw CouldNotSendNotification::microsoftTeamsWebhookUrlMissing();
+        }
         $this->webhookUrl = $webhookUrl;
+
         return $this;
     }
 
