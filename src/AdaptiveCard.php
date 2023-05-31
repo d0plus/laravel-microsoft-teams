@@ -19,7 +19,7 @@ use NotificationChannels\MicrosoftTeams\Cards\Adaptive\Styles;
  * Some logic taken from:
  * @see https://github.com/sebbmeyer/php-microsoft-teams-connector/blob/master/src/Cards/Adaptive/CustomAdaptiveCard.php
  */
-class AdaptiveCard implements MicrosoftTeamsMessageInterface
+class AdaptiveCard
 {
     /** @var string webhook url of recipient. */
     protected $webhookUrl = null;
