@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace common\components\MicrosoftTeams\Exceptions;
+namespace NotificationChannels\MicrosoftTeams\Exceptions;
 
 use GuzzleHttp\Exception\ClientException;
 

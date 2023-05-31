@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace common\components\MicrosoftTeams\Cards\Adaptive;
+namespace NotificationChannels\MicrosoftTeams\Cards\Adaptive;
 
 /**
  * Adaptive card styles

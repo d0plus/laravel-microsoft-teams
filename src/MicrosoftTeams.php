@@ -1,97 +1,44 @@
 <?php
 
-declare(strict_types=1);
+namespace NotificationChannels\MicrosoftTeams;
 
-namespace common\components\MicrosoftTeams;
-
-use common\components\MicrosoftTeams\Exceptions\CouldNotSendNotification;
-use common\helpers\ErrorHelper;
 use Exception;
-use GuzzleHttp\Client;
+use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Exception\ClientException;
-use GuzzleHttp\RequestOptions;
+use NotificationChannels\MicrosoftTeams\Exceptions\CouldNotSendNotification;
 use Psr\Http\Message\ResponseInterface;
-use Yii;
-use yii\base\Component;
-use yii\base\InvalidConfigException;
 
-/**
- * @see https://github.com/laravel-notification-channels/microsoft-teams/blob/master/src/MicrosoftTeams.php
- */
-class MicrosoftTeams extends Component
+class MicrosoftTeams
 {
-    /**
-     * Default channel to send notificaions if any other channel not set
-     *
-     * @var string
-     */
-    public $defaultChannel;
-
     /**
      * API HTTP client.
      *
-     * @var Client
+     * @var \GuzzleHttp\Client
      */
     protected $httpClient;
 
     /**
-     * @param Client $http
+     * @param \GuzzleHttp\Client $http
      */
-    public function __construct()
+    public function __construct(HttpClient $http)
     {
-        $this->httpClient = new Client();
+        $this->httpClient = $http;
     }
 
     /**
-     * @throws InvalidConfigException
-     */
-    public function init()
-    {
-        if (!$this->defaultChannel) {
-            throw new InvalidConfigException('Default Microsoft Teams Notification Channel is not provided.');
-        }
-        parent::init();
-    }
-
-    /**
-     * Send a message to a MicrosoftTeams channel via queue
+     * Send a message to a MicrosoftTeams channel.
      *
-     * @param MessageCard $message
-     *
-     * @return boolean
-     */
-    public function send(MicrosoftTeamsMessageInterface $message): bool
-    {
-        $job = new TeamsNotificationJob();
-        $job->message = $message;
-        if (!Yii::$app->queue->push($job)) {
-            ErrorHelper::jobNotCreate($job, Yii::$app->queue);
-            return false;
-        }
-        return true;
-    }
-
-    /**
-     * Send prepared data to a MicrosoftTeams channel webhook url
-     *
-     * @param string|null $url
+     * @param string $url
      * @param array $data
      *
      * @throws CouldNotSendNotification
      *
      * @return ResponseInterface|null
      */
-    public function sendPreparedDataToUrl(?string $url, array $data): ?ResponseInterface
+    public function send(string $url, array $data): ?ResponseInterface
     {
-        // Do not spam to real channels during development. Redirrect all messages to single dev channel
-        if (YII_ENV_DEV) {
-            $url = Yii::$app->params['ms_teams_channel_dev'];
-            if (!$url) {
-                throw new InvalidConfigException('MS_TEAMS_CHANNEL_DEV is not provided.');
-            }
-        }
         if (!$url) {
-            $url = $this->defaultChannel;
+            throw CouldNotSendNotification::microsoftTeamsWebhookUrlMissing();
         }
         // convert associative array to numeric array in sections (since ms is otherwise not acception the body structure)
         if (isset($data['sections'])) {
@@ -115,15 +62,4 @@ class MicrosoftTeams extends Component
         return $response;
     }
 
-    /**
-     * Generate link in Microsoft Teams format
-     * @todo: keep here, or create helper?
-     * @param string $link
-     * @param string $name
-     * @return string
-     */
-    public static function generateLink(string $link, string $name = null): string
-    {
-        return sprintf('[%s](%s)', $name ?: $link, $link);
-    }
 }

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace common\components\MicrosoftTeams\Cards\Message;
+namespace NotificationChannels\MicrosoftTeams\Cards\Message;
 
 /**
  * Message card styles

@@ -1,17 +1,15 @@
 <?php
 
-declare(strict_types=1);
+namespace NotificationChannels\MicrosoftTeams;
 
-namespace common\components\MicrosoftTeams;
-
-use common\components\MicrosoftTeams\Cards\Adaptive\Actions\AdaptiveCardActionInterface;
-use common\components\MicrosoftTeams\Cards\Adaptive\Actions\OpenUrl;
-use common\components\MicrosoftTeams\Cards\Adaptive\Elements\AdaptiveCardElementInterface;
-use common\components\MicrosoftTeams\Cards\Adaptive\Elements\Fact;
-use common\components\MicrosoftTeams\Cards\Adaptive\Elements\FactSet;
-use common\components\MicrosoftTeams\Cards\Adaptive\Elements\Image;
-use common\components\MicrosoftTeams\Cards\Adaptive\Elements\TextBlock;
-use common\components\MicrosoftTeams\Cards\Adaptive\Styles;
+use NotificationChannels\MicrosoftTeams\Cards\Adaptive\Actions\AdaptiveCardActionInterface;
+use NotificationChannels\MicrosoftTeams\Cards\Adaptive\Actions\OpenUrl;
+use NotificationChannels\MicrosoftTeams\Cards\Adaptive\Elements\AdaptiveCardElementInterface;
+use NotificationChannels\MicrosoftTeams\Cards\Adaptive\Elements\Fact;
+use NotificationChannels\MicrosoftTeams\Cards\Adaptive\Elements\FactSet;
+use NotificationChannels\MicrosoftTeams\Cards\Adaptive\Elements\Image;
+use NotificationChannels\MicrosoftTeams\Cards\Adaptive\Elements\TextBlock;
+use NotificationChannels\MicrosoftTeams\Cards\Adaptive\Styles;
 
 /**
  * This is "Adaptive Card"

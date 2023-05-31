@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace common\components\MicrosoftTeams\Cards\Adaptive\Elements;
+namespace NotificationChannels\MicrosoftTeams\Cards\Adaptive\Elements;
 
 interface AdaptiveCardElementInterface
 {

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace common\components\MicrosoftTeams;
+namespace NotificationChannels\MicrosoftTeams;
 
-use common\components\MicrosoftTeams\Cards\Message\Styles;
-use common\components\MicrosoftTeams\Exceptions\CouldNotSendNotification;
+use NotificationChannels\MicrosoftTeams\Cards\Message\Styles;
+use NotificationChannels\MicrosoftTeams\Exceptions\CouldNotSendNotification;
 
 /**
  * This is "Office 365 Connector card"
