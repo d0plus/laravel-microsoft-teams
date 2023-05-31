@@ -353,6 +353,17 @@ class AdaptiveCard
     }
 
     /**
+     * Determine if webhook url is not given.
+     *
+     * @return bool
+     */
+    public function toNotGiven(): bool
+    {
+        return ! $this->webhookUrl;
+    }
+
+
+    /**
      * Returns params content.
      *
      * MS Teams content width:
