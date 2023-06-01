@@ -11,6 +11,8 @@ use NotificationChannels\MicrosoftTeams\Cards\Adaptive\Elements\Image;
 use NotificationChannels\MicrosoftTeams\Cards\Adaptive\Elements\TextBlock;
 use NotificationChannels\MicrosoftTeams\Cards\Adaptive\Styles;
 
+use NotificationChannels\MicrosoftTeams\Exceptions\CouldNotSendNotification;
+
 /**
  * This is "Adaptive Card"
  * @see https://docs.microsoft.com/en-us/adaptive-cards/authoring-cards/getting-started
