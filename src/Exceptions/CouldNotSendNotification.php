@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace NotificationChannels\MicrosoftTeams\Exceptions;
 
 use GuzzleHttp\Exception\ClientException;
@@ -50,5 +48,10 @@ class CouldNotSendNotification extends \Exception
     public static function microsoftTeamsError($message)
     {
         return new static("Microsoft Teams responded with an error `{$message}`");
+    }
+
+    public static function microsoftTeamsWebhookUrlMissing()
+    {
+        return new static('Microsoft Teams webhook url is missing. Please add it as param over the MicrosoftTeamsMessage::to($url) method or return it in the notifiable model by providing the method Model::routeNotificationForMicrosoftTeams().');
     }
 }

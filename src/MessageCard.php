@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace NotificationChannels\MicrosoftTeams;
 
 use NotificationChannels\MicrosoftTeams\Cards\Message\Styles;
